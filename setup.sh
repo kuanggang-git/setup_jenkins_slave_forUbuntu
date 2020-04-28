@@ -1,10 +1,11 @@
 #!/bin/sh
 #
-cp jenkins-slave.conf /etc/sysconfig/jenkins-slave
+cp jenkins-slave.conf /etc/jenkins-slave.conf
 cp jenkins-slave.init /etc/init.d/jenkins-slave
 chmod 770 /etc/init.d/jenkins-slave
-chkconfig --level 3 jenkins-slave on
-service jenkins-slave restart
+update-rc.d jenkins-slave defaults
+systemctl enable jenkins-slave
+systemctl restart jenkins-slave
 chmod 644 monitor-jenkins
 cp monitor-jenkins /etc/cron.d/
-service crond restart
+systemctl restart cron

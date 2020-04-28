@@ -17,7 +17,7 @@
 
 download_jar()
 {
-    wget -q $JENKINS_URL/jnlpJars/slave.jar || exit 0
+    wget -q $JENKINS_URL/jnlpJars/agent.jar || exit 0
 }
 
 start()
@@ -32,9 +32,9 @@ start()
     echo $JENKINS_NODENAME
     [ -d $JENKINS_WORKDIR ] || mkdir -p $JENKINS_WORKDIR
     cd $JENKINS_WORKDIR
-    [ -f slave.jar ] || download_jar
+    [ -f agent.jar ] || download_jar
         echo -n $"Starting Jenkins Slave: "
-        sh -c "java -jar slave.jar \
+        sh -c "java -jar agent.jar \
                -jnlpUrl $JENKINS_URL/computer/$JENKINS_NODENAME/slave-agent.jnlp -secret $JENKINS_SECRET \
                >slave.log 2>&1 &"
         echo "[OK]".
@@ -43,7 +43,7 @@ start()
 stop()
 {
         echo -n $"Shutting down Jenkins Slave: "
-        ps -ef | grep "java -jar slave.jar" | grep -v grep | cut -c 10-15| sudo xargs kill -s 9 2>> slave.log
+        ps -ef | grep "java -jar agent.jar" | grep -v grep | cut -c 10-15| sudo xargs kill -s 9 2>> slave.log
         echo "[OK]".
 }
 

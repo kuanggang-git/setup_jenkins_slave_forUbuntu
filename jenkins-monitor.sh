@@ -6,5 +6,5 @@ if [ $c -eq 0 ];then
   systemctl stop jenkins-slave
   sleep 2s
   systemctl start jenkins-slave
-  echo "Finished: service jenkins-slave restarted"
+  echo "Finished restarting service jenkins-slave"
 fi

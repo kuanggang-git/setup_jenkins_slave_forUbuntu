@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-cp jenkins-slave.conf /etc/jenkins-slave.conf
+cp jenkins-slave.conf /etc/default/jenkins-slave
 cp jenkins-slave.init /etc/init.d/jenkins-slave
 chmod 770 /etc/init.d/jenkins-slave
 update-rc.d jenkins-slave defaults

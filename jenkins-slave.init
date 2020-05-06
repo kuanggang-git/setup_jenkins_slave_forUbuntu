@@ -1,14 +1,18 @@
 #!/bin/sh
-#
-# Program:
-#    Launch a Jenkins Slave instance on this node
-# chkconfig:    - 99 01
-# description:  Enable this node
+### BEGIN INIT INFO
+# Provides:             Jenkins-Slave
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Launch a Jenkins Slave instance on this node
+### END INIT INFO
+
+# Source function library.
+. /lib/lsb/init-functions
 
 # Source environment varibales : PATH etc
 . /etc/profile
 
-[ -f /etc/sysconfig/jenkins-slave ] && . /etc/sysconfig/jenkins-slave
+[ -f /etc/default/jenkins-slave ] && . /etc/default/jenkins-slave
 [ -n "$JENKINS_URL" ] || exit 0
 [ -n "$JENKINS_WORKDIR" ] || exit 0
 [ -n "$JENKINS_NODENAME" ] || exit 0
